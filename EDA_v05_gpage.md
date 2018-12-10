@@ -1,5 +1,5 @@
 ---
-title:    fig.savefig('feature_violin_{}.png'.format(i))
+title:    Introduction and EDA
 notebook: EDA_v05_gpage.ipynb
 nav_include: 1 
 ---
