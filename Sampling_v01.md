@@ -1,5 +1,5 @@
 ---
-title: define first_pid, which is the first playlist id after the playlists that are in the original data frame
+title: Sampling
 notebook: Sampling_v01.ipynb
 nav_include: 2
 ---
