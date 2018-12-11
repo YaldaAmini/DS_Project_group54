@@ -1,14 +1,5 @@
----
-title: Results and Conclusion
-notebook: summary.ipynb
-nav_include: 4
----
 
-## Contents
-{:.no_toc}
-*  
-{: toc}
-
+# Results and Conclusion
 
 <hr style="height:2pt">
 
@@ -18,4 +9,4 @@ nav_include: 4
 
 ## Conclusion
 
-Hi Yalda
+Hi Yalda & Joao!

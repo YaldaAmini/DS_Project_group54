@@ -1,7 +1,6 @@
 ---
-title: Sampling
-notebook: Sampling_v01.ipynb
-nav_include: 2
+title: Creating final dataset
+notebook: sampling_v01.ipynb
 ---
 
 ## Contents
@@ -12688,5 +12687,11 @@ And export the final dataframe as a csv file, which will be used as the sample d
 
 ```python
 genre_classified_playlists.to_csv ("playlist_df.csv")
+```
+
+
+
+
+```python
 ```
 
