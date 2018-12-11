@@ -1,14 +1,5 @@
----
-title: Introduction and EDA
-notebook: EDA_v05_gpage.ipynb
-nav_include: 1
----
 
-## Contents
-{:.no_toc}
-*  
-{: toc}
-
+# Introduction and EDA
 
 ## Description:
 Creates functions to get track and artist features from Spotify's API using Spotipy Package. After getting the required track and artist features, it creates a pandas database with the requested variables. Finally, Exploratory Data Analysis is carried out.
@@ -106,7 +97,7 @@ Our base data consists of a set of music playlists obtained from Spotify’s “
 
 
 ```python
-Image("img/eda_table1.png",width=600, height=400)
+Image("img/eda_table1.png",width=500, height=400)
 ```
 
 
@@ -120,8 +111,6 @@ Image("img/eda_table1.png",width=600, height=400)
 For EDA purposes, we focused on 1000 playlists in order to get a quick understanding of the structure of the data. A sample of the raw format of the data is as follows:
 
 
-<img src='img/eda_pic1.png'>
-
 
 
 ```python
@@ -133,7 +122,7 @@ Image("img/eda_pic1.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_10_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_9_0.png)
 
 
 
@@ -155,6 +144,9 @@ In order to obtain more meaningful and descriptive variables about each of the t
 
 ```python
 def create_spotipy_obj():
+#    import spotipy
+#    from spotipy.oauth2 import SpotifyClientCredentials
+#    import spotipy.util as util
     
     """
     Uses dbarjum's client id for DS Project
@@ -671,7 +663,7 @@ Image("img/eda_table2.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_19_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_18_0.png)
 
 
 
@@ -768,7 +760,7 @@ Image("img/eda_pic2.png",width=1000, height=800)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_23_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_22_0.png)
 
 
 
@@ -1353,7 +1345,7 @@ plt.show()
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_29_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_28_0.png)
 
 
 
@@ -1367,7 +1359,7 @@ Image("img/eda_pic3.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_30_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_29_0.png)
 
 
 
@@ -1429,7 +1421,7 @@ Image("img/distribution_plot_artist_followers.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_33_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_32_0.png)
 
 
 
@@ -1445,13 +1437,11 @@ Image("img/distribution_plot_instrumentalness.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_35_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_34_0.png)
 
 
 
 Song Duration – this was just placed out of curiosity that the vast majority of songs seem to last around 250 seconds (about 4 minutes).
-
-![png](img/distribution_plot_duration_ms.png)
 
 
 
@@ -1463,7 +1453,7 @@ Image("img/distribution_plot_duration_ms.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_38_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_36_0.png)
 
 
 
@@ -1485,11 +1475,17 @@ We then looked at how each feature is distributed when grouped by genre (see app
 
 ```python
 col_names = temp.columns
-#fig, axs = plt.subplots(14)
-#fig.set_size_inches(20, 120)
-#sns.set(style='white', palette='deep',font_scale=1.5)
-#for i in range(len(col_names_temp)):
+fig, axs = plt.subplots(14)
+fig.set_size_inches(20, 120)
+sns.set(style='white', palette='deep',font_scale=1.5)
+for i in range(len(col_names_temp)):
+   sns.distplot(temp.loc[temp['genre']=='pop'][col_names_temp[i]].values,kde_kws={"label": "pop"},ax = axs[i]).set_title(col_names_temp[i])#,hue=casual_mean_w.iloc[0:,1] ,data=casual_mean_w, style =casual_mean_w.iloc[0:,1] , markers=True, dashes=False,ax=ax1).set_title('how each weather category affects number of casual riders in different hour of a day')
+   sns.distplot(temp.loc[temp['genre']=='rock'][col_names_temp[i]].values,kde_kws={"label": "rock"},ax = axs[i]).set_title(col_names_temp[i]) #,hue=casual_mean_w.iloc[0:,1] ,data=casual_mean_w, style =casual_mean_w.iloc[0:,1] , markers=True, dashes=False,ax=ax1).set_title('how each weather category affects number of casual riders in different hour of a day')
+   sns.distplot(temp.loc[temp['genre']=='rap'][col_names_temp[i]].values,kde_kws={"label": "rap"},ax = axs[i]).set_title(col_names_temp[i]) #,hue=casual_mean_w.iloc[0:,1] ,data=casual_mean_w, style =casual_mean_w.iloc[0:,1] , markers=True, dashes=False,ax=ax1).set_title('how each weather category affects number of casual riders in different hour of a day')
+   sns.distplot(temp.loc[temp['genre']=='pop rock'][col_names_temp[i]].values,kde_kws={"label": "pop rock"},ax = axs[i]).set_title(col_names_temp[i]) #,hue=casual_mean_w.iloc[0:,1] ,data=casual_mean_w, style =casual_mean_w.iloc[0:,1] , markers=True, dashes=False,ax=ax1).set_title('how each weather category affects number of casual riders in different hour of a day')
+   sns.distplot(temp.loc[temp['genre']=='other'][col_names_temp[i]].values,kde_kws={"label": "other"},ax = axs[i]).set_title(col_names_temp[i]) #,hue=casual_mean_w.iloc[0:,1] ,data=casual_mean_w, style =casual_mean_w.iloc[0:,1] , markers=True, dashes=False,ax=ax1).set_title('how each weather category affects number of casual riders in different hour of a day')
 
+fig.savefig('feature_hist.png')
 
 ```
 
@@ -1688,6 +1684,13 @@ The Final step of our EDA consisted into looking at boxplots of each feature gro
 
 
 ```python
+for i in range(len(col_names_temp)):
+    fig, axs = plt.subplots(1)
+    fig.set_size_inches(16, 10)
+    sns.set(font_scale=1.5,style='white', palette='deep') 
+    axs.set_yscale("log")
+    sns.boxplot(x = temp['genre'] , y=temp[col_names_temp[i]].values,palette='pastel').set_title(col_names_temp[i]) 
+    fig.savefig('feature_box_{}.png'.format(i))
 
 
 
@@ -1719,7 +1722,7 @@ Image("img/feature_violin_6_speechness.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_45_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_43_0.png)
 
 
 
@@ -1733,7 +1736,7 @@ Image("img/feature_violin_7_danceability.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_46_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png)
 
 
 
@@ -1747,7 +1750,7 @@ Image("img/feature_violin_9_instrumentalness_log.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_47_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_45_0.png)
 
 
 
@@ -1761,13 +1764,22 @@ Image("img/feature_violin_12_artistfollowers.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_48_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_46_0.png)
 
 
 
 
 
 ```python
+fig, axs = plt.subplots(14)
+fig.set_size_inches(20, 120)
+sns.set(font_scale=1.5,style='white', palette='deep') 
+for i in range(len(col_names_temp)):
+    sns.boxplot(x = temp['genre'] , y=temp[col_names_temp[i]].values,ax = axs[i],showfliers=0).set_title(col_names_temp[i]) 
+#    fig.savefig('feature_violin_{}.png'.format(i))
+fig.savefig('feature_boxplot.png')
 
+### @2
+# Introduction and EDA
 ```
 
