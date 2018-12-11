@@ -1,6 +1,7 @@
 ---
 title: Creating final dataset
 notebook: sampling_v01.ipynb
+nav_include: 2
 ---
 
 ## Contents
