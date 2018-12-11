@@ -1,7 +1,7 @@
 ---
 title: Model
 notebook: model_v02.ipynb
-nav_include: 2
+nav_include: 3
 ---
 
 ## Contents
