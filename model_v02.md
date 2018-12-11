@@ -1,5 +1,5 @@
 ---
-title: creating prediction values on the test set for the next module, which is song suggestion
+title: Model
 notebook: model_v02.ipynb
 nav_include: 2
 ---
