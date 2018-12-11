@@ -106,7 +106,7 @@ Our base data consists of a set of music playlists obtained from Spotify’s “
 
 
 ```python
-Image("img/eda_table1.png",width=600, height=400)
+Image("img/eda_table1.png",width=300, height=200)
 ```
 
 
