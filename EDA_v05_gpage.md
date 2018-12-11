@@ -1,5 +1,14 @@
+---
+title: Introduction and EDA
+notebook: EDA_v05_gpage.ipynb
+nav_include: 1
+---
 
-# Introduction and EDA
+## Contents
+{:.no_toc}
+*  
+{: toc}
+
 
 ## Description:
 Creates functions to get track and artist features from Spotify's API using Spotipy Package. After getting the required track and artist features, it creates a pandas database with the requested variables. Finally, Exploratory Data Analysis is carried out.
@@ -144,9 +153,6 @@ In order to obtain more meaningful and descriptive variables about each of the t
 
 ```python
 def create_spotipy_obj():
-#    import spotipy
-#    from spotipy.oauth2 import SpotifyClientCredentials
-#    import spotipy.util as util
     
     """
     Uses dbarjum's client id for DS Project
@@ -1776,10 +1782,8 @@ fig.set_size_inches(20, 120)
 sns.set(font_scale=1.5,style='white', palette='deep') 
 for i in range(len(col_names_temp)):
     sns.boxplot(x = temp['genre'] , y=temp[col_names_temp[i]].values,ax = axs[i],showfliers=0).set_title(col_names_temp[i]) 
-#    fig.savefig('feature_violin_{}.png'.format(i))
 fig.savefig('feature_boxplot.png')
 
 ### @2
-# Introduction and EDA
 ```
 

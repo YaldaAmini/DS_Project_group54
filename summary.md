@@ -1,6 +1,7 @@
 ---
 title: Results and Conclusion
 notebook: summary.ipynb
+nav_include: 3
 ---
 
 ## Contents
