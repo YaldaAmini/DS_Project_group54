@@ -106,7 +106,7 @@ Our base data consists of a set of music playlists obtained from Spotify’s “
 
 
 ```python
-Image("img/eda_table1.png",width=300, height=200)
+Image("img/eda_table1.png",width=600, height=400)
 ```
 
 
@@ -120,6 +120,8 @@ Image("img/eda_table1.png",width=300, height=200)
 For EDA purposes, we focused on 1000 playlists in order to get a quick understanding of the structure of the data. A sample of the raw format of the data is as follows:
 
 
+<img src='img/eda_pic1.png'>
+
 
 
 ```python
@@ -131,7 +133,7 @@ Image("img/eda_pic1.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_9_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_10_0.png)
 
 
 
@@ -669,7 +671,7 @@ Image("img/eda_table2.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_18_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_19_0.png)
 
 
 
@@ -766,7 +768,7 @@ Image("img/eda_pic2.png",width=1000, height=800)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_22_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_23_0.png)
 
 
 
@@ -1351,7 +1353,7 @@ plt.show()
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_28_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_29_0.png)
 
 
 
@@ -1365,7 +1367,7 @@ Image("img/eda_pic3.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_29_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_30_0.png)
 
 
 
@@ -1427,7 +1429,7 @@ Image("img/distribution_plot_artist_followers.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_32_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_33_0.png)
 
 
 
@@ -1443,7 +1445,7 @@ Image("img/distribution_plot_instrumentalness.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_34_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_35_0.png)
 
 
 
@@ -1461,7 +1463,7 @@ Image("img/distribution_plot_duration_ms.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_37_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_38_0.png)
 
 
 
@@ -1717,7 +1719,7 @@ Image("img/feature_violin_6_speechness.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_45_0.png)
 
 
 
@@ -1731,7 +1733,7 @@ Image("img/feature_violin_7_danceability.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_45_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_46_0.png)
 
 
 
@@ -1745,7 +1747,7 @@ Image("img/feature_violin_9_instrumentalness_log.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_46_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_47_0.png)
 
 
 
@@ -1759,7 +1761,7 @@ Image("img/feature_violin_12_artistfollowers.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_47_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_48_0.png)
 
 
 
