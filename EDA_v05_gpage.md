@@ -1557,10 +1557,10 @@ fig.savefig('feature_violin.png')
 
 ```
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_41_0.png" alt="drawing" width="800" align="middle"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_41_0.png" alt="drawing" width="600" align="middle"/>
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_42_0.png" alt="drawing" width="800" align="middle"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_42_0.png" alt="drawing" width="600" align="middle"/>
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_43_0.png" alt="drawing" width="800" align="middle"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_43_0.png" alt="drawing" width="600" align="middle"/>
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_44_0.png" alt="drawing" width="800" align="middle"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_44_0.png" alt="drawing" width="600" align="middle"/>
