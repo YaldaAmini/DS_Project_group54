@@ -759,20 +759,6 @@ songs_df_new = genre_generator(songs_df)
 
 
 ```python
-Image("img/eda_pic2.png",width=1000, height=800) 
-```
-
-
-
-
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_22_0.png)
-
-
-
-
-
-```python
 songs_df_new.head()
 ```
 
@@ -1351,22 +1337,7 @@ plt.show()
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_28_0.png)
-
-
-
-
-```python
-Image("img/eda_pic3.png",width=500, height=400)
-
-```
-
-
-
-
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_29_0.png)
-
+![png](EDA_v05_gpage_files/EDA_v05_gpage_27_0.png)
 
 
 ### Noteworthy findings
@@ -1378,7 +1349,6 @@ Artist followers – most artists have few followers, but there are a few artist
 
 
 ```python
-### this goes after @2
 def plot_dist_features(df, features, save=False, path=str):
     
     """
@@ -1413,7 +1383,7 @@ def plot_dist_features(df, features, save=False, path=str):
 
 features_2_plot = set(list(temp.columns.values[0:18]))^set(['song_uri','artist_uri','artist_name'])
 path = '/Users/danny_barjum/Dropbox/DS Project/05 - code/01 - EDA/fig/dists/'
-#plot_dist_features(temp, features_2_plot, save=True, path=path)
+
 ```
 
 
@@ -1427,7 +1397,7 @@ Image("img/distribution_plot_artist_followers.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_32_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_30_0.png)
 
 
 
@@ -1443,7 +1413,7 @@ Image("img/distribution_plot_instrumentalness.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_34_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_32_0.png)
 
 
 
@@ -1459,7 +1429,7 @@ Image("img/distribution_plot_duration_ms.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_36_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_34_0.png)
 
 
 
@@ -1502,7 +1472,6 @@ fig.savefig('feature_hist.png')
 songs_encoded = pd.get_dummies(temp,columns = ['genre'],drop_first=True)
 songs_encoded .head()
 
-#### the correlation code would goes after this  @1
 ```
 
 
@@ -1728,7 +1697,7 @@ Image("img/feature_violin_6_speechness.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_43_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_41_0.png)
 
 
 
@@ -1742,7 +1711,7 @@ Image("img/feature_violin_7_danceability.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_42_0.png)
 
 
 
@@ -1756,7 +1725,7 @@ Image("img/feature_violin_9_instrumentalness_log.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_45_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_43_0.png)
 
 
 
@@ -1770,7 +1739,7 @@ Image("img/feature_violin_12_artistfollowers.png",width=500, height=400)
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_46_0.png)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png)
 
 
 
@@ -1784,6 +1753,5 @@ for i in range(len(col_names_temp)):
     sns.boxplot(x = temp['genre'] , y=temp[col_names_temp[i]].values,ax = axs[i],showfliers=0).set_title(col_names_temp[i]) 
 fig.savefig('feature_boxplot.png')
 
-### @2
 ```
 
