@@ -30,8 +30,7 @@ Our base data consists of a set of music playlists obtained from Spotify’s “
 
 
 
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_7_0.png)
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_7_0.png" alt="drawing" width="400"/>
 
 
 
@@ -569,8 +568,7 @@ songs_df.shape
 
 
 
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_18_0.png)
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_18_0.png" alt="drawing" width="400"/>
 
 
 
@@ -1233,8 +1231,7 @@ plt.show()
 ```
 
 
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_27_0.png)
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_27_0.png" alt="drawing" width="400"/>
 
 
 ### Noteworthy findings
@@ -1563,16 +1560,10 @@ fig.savefig('feature_violin.png')
 
 ```
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_41_0.png" alt="drawing" width="200"/>
-[comment]: <> (![png](EDA_v05_gpage_files/EDA_v05_gpage_41_0.png))
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_41_0.png" alt="drawing" width="400"/>
 
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_42_0.png" alt="drawing" width="400"/>
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_42_0.png" alt="drawing" width="200"/>
-[comment]: <> (![png](EDA_v05_gpage_files/EDA_v05_gpage_42_0.png))
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_43_0.png" alt="drawing" width="400"/>
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_43_0.png" alt="drawing" width="200"/>
-[comment]: <> (![png](EDA_v05_gpage_files/EDA_v05_gpage_43_0.png))
-
-
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_44_0.png" alt="drawing" width="200"/>
-[comment]: <> (![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png | width=250))
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_44_0.png" alt="drawing" width="400"/>
