@@ -1561,43 +1561,18 @@ for i in range(len(col_names_temp)):
 fig.savefig('feature_violin.png')
 
 
-
+```
 
 
 ![png](EDA_v05_gpage_files/EDA_v05_gpage_41_0.png)
 
 
 
-
-
-
 ![png](EDA_v05_gpage_files/EDA_v05_gpage_42_0.png)
-
-
-
-
 
 
 ![png](EDA_v05_gpage_files/EDA_v05_gpage_43_0.png)
 
 
 
-
-
-
 ![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png)
-
-
-
-
-
-```python
-fig, axs = plt.subplots(14)
-fig.set_size_inches(20, 120)
-sns.set(font_scale=1.5,style='white', palette='deep') 
-for i in range(len(col_names_temp)):
-    sns.boxplot(x = temp['genre'] , y=temp[col_names_temp[i]].values,ax = axs[i],showfliers=0).set_title(col_names_temp[i]) 
-fig.savefig('feature_boxplot.png')
-
-```
-
