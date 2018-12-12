@@ -30,7 +30,7 @@ Our base data consists of a set of music playlists obtained from Spotify’s “
 
 
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_7_0.png" alt="drawing" width="400"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_7_0.png" alt="drawing" width="800" align="middle"/>
 
 
 
@@ -38,8 +38,8 @@ For EDA purposes, we focused on 1000 playlists in order to get a quick understan
 
 
 
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_9_0.png" alt="drawing" align="middle"/>
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_9_0.png)
 
 
 
@@ -568,7 +568,7 @@ songs_df.shape
 
 
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_18_0.png" alt="drawing" width="400"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_18_0.png" alt="drawing" width="800" align="middle"/>
 
 
 
@@ -1231,7 +1231,7 @@ plt.show()
 ```
 
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_27_0.png" alt="drawing" width="400"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_27_0.png" alt="drawing" width="800" align="middle"/>
 
 
 ### Noteworthy findings
@@ -1282,8 +1282,7 @@ path = '/Users/danny_barjum/Dropbox/DS Project/05 - code/01 - EDA/fig/dists/'
 
 
 
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_30_0.png)
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_30_0.png" alt="drawing" align="middle"/>
 
 
 
@@ -1292,8 +1291,7 @@ Instrumentalness – this distribution shows that most songs have vocals (close 
 
 
 
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_32_0.png)
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_32_0.png" alt="drawing" align="middle"/>
 
 
 
@@ -1302,8 +1300,7 @@ Song Duration – this was just placed out of curiosity that the vast majority o
 
 
 
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_34_0.png)
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_34_0.png" alt="drawing" align="middle"/>
 
 
 
@@ -1560,10 +1557,10 @@ fig.savefig('feature_violin.png')
 
 ```
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_41_0.png" alt="drawing" width="400"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_41_0.png" alt="drawing" width="800" align="middle"/>
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_42_0.png" alt="drawing" width="400"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_42_0.png" alt="drawing" width="800" align="middle"/>
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_43_0.png" alt="drawing" width="400"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_43_0.png" alt="drawing" width="800" align="middle"/>
 
-<img src="EDA_v05_gpage_files/EDA_v05_gpage_44_0.png" alt="drawing" width="400"/>
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_44_0.png" alt="drawing" width="800" align="middle"/>
