@@ -393,7 +393,7 @@ In order to create the above table we used the following codes:
 
 ```python
 def create_spotipy_obj():
-    
+
     """
     Uses dbarjum's client id for DS Project
     """
@@ -404,14 +404,14 @@ def create_spotipy_obj():
 
     username = 'dbarjum'
     scope = 'user-library-read'
-    
+
     token = util.prompt_for_user_token(username,scope,client_id=SPOTIPY_CLIENT_ID,
                            client_secret=SPOTIPY_CLIENT_SECRET,
                            redirect_uri=SPOTIPY_REDIRECT_URI)
-    client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_ID, 
+    client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_ID,
                                                           client_secret=SPOTIPY_CLIENT_SECRET, proxies=None)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    
+
     return sp
 ```
 
@@ -427,43 +427,43 @@ sp = create_spotipy_obj()
 
 ```python
 def get_all_features(track_list = list, artist_list = list, sp=None):
-    
+
     """
     This function takes in a list of tracks and a list of artists, along
     with a spotipy object and generates two lists of features from Spotify's API.
-    
+
     inputs:
         1. track_list: list of all tracks to be included in dataframe
         2. artist_list: list of all artists corresponding to tracks
         3. sp: spotipy object to communicate with Spotify API
-    
+
     returns:
         1. track_features: list of all features for each track in track_list
         2. artist_features: list of all artist features for each artist in artist_list
     """
-    
+
     track_features = []
     artist_features = []
-    
+
     track_iters = int(len(track_list)/50)
     track_remainders = len(track_list)%50
 
     start = 0
     end = start+50
-    
+
     for i in range(track_iters):
         track_features.extend(sp.audio_features(track_list[start:end]))
         artist_features.extend(sp.artists(artist_list[start:end]).get('artists'))
         start += 50
         end = start+50
-    
+
 
     if track_remainders:
         end = start + track_remainders
         track_features.extend(sp.audio_features(track_list[start:end]))
         artist_features.extend(sp.artists(artist_list[start:end]).get('artists'))
-    
-    
+
+
     return track_features, artist_features
 ```
 
@@ -484,35 +484,35 @@ print("--- %s seconds ---" % (time.time() - start_time))
 
 ```python
 def create_song_df(track_features=list, artist_features=list):
-    
+
     """
     This function takes in two lists of track and artist features, respectively,
     and generates a dataframe of the features.
-    
+
     inputs:
         1. track_features: list of all tracks including features
         2. artist_features: list of all artists including features
-    
+
     returns:
         1. df: a pandas dataframe of size (N, X) where N corresponds to the number of songs
         in track_features, X is the number of features in the dataframe.
     """
-    
+
     import pandas as pd
-    
+
     selected_song_features = ['uri', 'duration_ms', 'time_signature', 'key',
-                              'tempo', 'energy', 'mode', 'loudness', 'speechiness', 
-                              'danceability', 'acousticness', 'instrumentalness', 
+                              'tempo', 'energy', 'mode', 'loudness', 'speechiness',
+                              'danceability', 'acousticness', 'instrumentalness',
                               'valence', 'liveness']
     selected_artist_features = ['followers', 'uri', 'name', 'popularity', 'genres']
-    
+
     col_names = ['song_uri', 'duration_ms', 'time_signature', 'key',
-                 'tempo', 'energy', 'mode', 'loudness', 'speechiness', 
-                 'danceability', 'acousticness', 'instrumentalness', 
+                 'tempo', 'energy', 'mode', 'loudness', 'speechiness',
+                 'danceability', 'acousticness', 'instrumentalness',
                  'valence', 'liveness', 'artist_followers', 'artist_uri',
                  'artist_name', 'artist_popularity']
-    
-    
+
+
     data = []
 
     for i, j in zip(track_features, artist_features):
@@ -529,14 +529,14 @@ def create_song_df(track_features=list, artist_features=list):
                 temp.append(j.get(af))
 
         data.append(list(temp))
-    
+
     df = pd.DataFrame(data)
 
     for i in range(len(df.columns)- len(col_names)):
         col_names.append('g'+str(i+1))
 
     df.columns = col_names
-    
+
     return df
 ```
 
@@ -574,14 +574,14 @@ songs_df.shape
 
 
 
-### Data manipulation and prioritization of variables 
+### Data manipulation and prioritization of variables
 When requesting track data from the API, each song request returns 18 track features. Similarily, when requesting artist data through the API, each request returns 10 features for each artist. Not all of the features returned from the API are useful for our analysis, for example, images from an album are not useful toward predicting a playlist. Therefore, from the 28 possible features that are returned by the Spotify API, we selected 19 to be used for EDA. A few of these 19 variables will not be used for modeling but are needed for tracking purposes. For example, we need to keep track of a song’s unique identifier in order to avoid suggesting that one song be added into a playlist that already contains that one song. Likewise, we may keep track of an artist’s unique identifier in case we want to request songs from a particular artist.
 
 One of the features that we found interesting to explore and understand further is Spotify’s classification of artists into genres. Each artist can be classified as belonging to many genres, for example, an artist can be classified as belonging to a single genre, while another artist can be classified as belonging to 21 genres. Likewise, there are repeated genre classifications under different names, for example, some artists are classified as “k-pop” while others are classified under “Korean pop”; these two are the same.
 
 In order to get around these issues, we decided to classify each song as belonging to only one of five possible macro genres: Rap, Pop, Rock, Pop Rock, and Other.
 
-These categories were chosen upon a qualitative analysis of the genres provided by Spotify API for each song. The classification was done by use of the following logic: 
+These categories were chosen upon a qualitative analysis of the genres provided by Spotify API for each song. The classification was done by use of the following logic:
 
     •If rap, hiphop, r&b appeared as one of the genres for the song, that song was classified as “Rap”
     •If both the words Rock and Pop appeared as genres for the song (eg: rock, dance rock, pop, dance pop), that song was classified as “Pop Rock”
@@ -602,7 +602,7 @@ def genre_generator(songs_df):
 
     # finding position of g1 and last position of gX in columns, to use it later for assessingn genre of song
 
-    g1_index = 0 
+    g1_index = 0
     last_column_index = 0
 
     column_names = songs_df.columns.values
@@ -617,7 +617,7 @@ def genre_generator(songs_df):
 
     # loop to create gender for each song in dataframe     
 
-    songs_df["genre"] = "" 
+    songs_df["genre"] = ""
 
     for j in range(len(songs_df)):
 
@@ -642,7 +642,7 @@ def genre_generator(songs_df):
 
         # giving column genre the classified genre for a given song         
         songs_df.set_value(j, 'genre', genre)
-    
+
     return songs_df
 ```
 
@@ -1212,7 +1212,7 @@ Finally, in order to deal with categorical variables, we used one-hot encoding t
 Once data was gathered and cleaned for analysis, we proceeded into doing some data visualization and actual exploration.
 
 ### Variable correlations
-We first generated a scatter matrix to get a quick understanding of the data. We found that there are a few correlations among variables (regardless of classes). For instance, energy (5th feature) seems to be positively correlated with loudness (7th feature), and negatively correlated with accousticness (10th feature). This gives us a hint that the predictive power of each of these pairs might change when these variables are considered together in our models. 
+We first generated a scatter matrix to get a quick understanding of the data. We found that there are a few correlations among variables (regardless of classes). For instance, energy (5th feature) seems to be positively correlated with loudness (7th feature), and negatively correlated with accousticness (10th feature). This gives us a hint that the predictive power of each of these pairs might change when these variables are considered together in our models.
 
 
 
@@ -1239,7 +1239,7 @@ plt.show()
 
 ### Noteworthy findings
 
-After creating a scatter matrix of the variables, we decided to look at the distribution of the variables over 1000 songs. Appendix 2 contains distribution plots for each of the song features. This step was not very informative, but of some interest was the following few distributions: 
+After creating a scatter matrix of the variables, we decided to look at the distribution of the variables over 1000 songs. Appendix 2 contains distribution plots for each of the song features. This step was not very informative, but of some interest was the following few distributions:
 
 Artist followers – most artists have few followers, but there are a few artists that have a large number of followers.
 
@@ -1247,35 +1247,35 @@ Artist followers – most artists have few followers, but there are a few artist
 
 ```python
 def plot_dist_features(df, features, save=False, path=str):
-    
+
     """
     Plots the distribution of all features passed into the function and saves them
     if save == True.
-    
+
     Arguments:
         - df: the dataframe used to plot features
         - features: the column names of the dataframe whose features are to be plot
         - save: boolean indicating whether the plots are to be saved
         - path: string indicating the path of where to save the features.
-    
+
     Return: None, just prints the distributions
     """
-    
+
     for i in features:
         fig, axs = plt.subplots(1, figsize=(9,6))
         sns.set(style='white', palette='deep')
-        
+
         x = df[i]
         if i == 'duration_ms':
             x = x/1000
             sns.kdeplot(x, label = 'duration in seconds', shade=True).set_title("Distribution of Feature Duration")
         else:
             sns.kdeplot(x, label = i, shade=True).set_title("Distribution of Feature "+i)
-        
+
         if save:
             filename='distribution_plot_'+i
             fig.savefig(path+filename)
-    
+
     return
 
 features_2_plot = set(list(temp.columns.values[0:18]))^set(['song_uri','artist_uri','artist_name'])
@@ -1311,7 +1311,7 @@ Song Duration – this was just placed out of curiosity that the vast majority o
 
 
 We then decided to group songs by genre and look at the distribution of songs that fall under the five genres we created. The distribution of 1000 songs were as follows:
- 
+
     rap         27.2 %
     pop         22.7 %
     other       21.6 %
@@ -1539,9 +1539,9 @@ The Final step of our EDA consisted into looking at boxplots of each feature gro
 for i in range(len(col_names_temp)):
     fig, axs = plt.subplots(1)
     fig.set_size_inches(16, 10)
-    sns.set(font_scale=1.5,style='white', palette='deep') 
+    sns.set(font_scale=1.5,style='white', palette='deep')
     axs.set_yscale("log")
-    sns.boxplot(x = temp['genre'] , y=temp[col_names_temp[i]].values,palette='pastel').set_title(col_names_temp[i]) 
+    sns.boxplot(x = temp['genre'] , y=temp[col_names_temp[i]].values,palette='pastel').set_title(col_names_temp[i])
     fig.savefig('feature_box_{}.png'.format(i))
 
 
@@ -1555,7 +1555,7 @@ for i in range(len(col_names_temp)):
 
 fig, axs = plt.subplots(14)
 fig.set_size_inches(20, 120)
-sns.set(font_scale=1.5,style='white', palette='deep') 
+sns.set(font_scale=1.5,style='white', palette='deep')
 for i in range(len(col_names_temp)):
     sns.violinplot(x = temp['genre'] , y=temp[col_names_temp[i]].values,ax = axs[i],showfliers=False).set_title(col_names_temp[i])#,hue=casual_mean_w.iloc[0:,1] ,data=casual_mean_w, style =casual_mean_w.iloc[0:,1] , markers=True, dashes=False,ax=ax1).set_title('how each weather category affects number of casual riders in different hour of a day')
 fig.savefig('feature_violin.png')
@@ -1563,16 +1563,16 @@ fig.savefig('feature_violin.png')
 
 ```
 
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_41_0.png)
-
-
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_42_0.png)
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_41_0.png" alt="drawing" width="200"/>
+[comment]: <> (![png](EDA_v05_gpage_files/EDA_v05_gpage_41_0.png))
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_43_0.png)
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_42_0.png" alt="drawing" width="200"/>
+[comment]: <> (![png](EDA_v05_gpage_files/EDA_v05_gpage_42_0.png))
+
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_43_0.png" alt="drawing" width="200"/>
+[comment]: <> (![png](EDA_v05_gpage_files/EDA_v05_gpage_43_0.png))
 
 
-
-![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png | width=250)
+<img src="EDA_v05_gpage_files/EDA_v05_gpage_44_0.png" alt="drawing" width="200"/>
+[comment]: <> (![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png | width=250))
