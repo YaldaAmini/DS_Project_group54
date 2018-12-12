@@ -40,37 +40,6 @@ For our literature review part of the project, we turned to a few sources of inf
 
 
 
-```python
-import matplotlib as mpl
-import matplotlib.cm as cm
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-import pandas as pd
-import numpy as np
-import json
-import time
-
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegressionCV
-from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.ensemble import AdaBoostClassifier
-
-from sklearn.tree import DecisionTreeClassifier
-
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
-
-import recommend_songs_set as recs #function list created for song recommendation
-import spotify_api_function_set as sps
-```
-
-
-
 
 ```python
 #reading playlist files which are in json format

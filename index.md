@@ -8,11 +8,15 @@ CS 109 A Final Project
 > Dec 2018
 
 
+**Problem statement and motivation**
 
-**Project question is as follows:**
+![png](notebooks/img/introduction.png)
 
-Our general strategy was to obtain information about a random sample of tracks within a playlist, classify those songs and classify the playlist (based on the genres of the artist of the songs), to face the challenge of unsupersived learning. Then, we got features for the songs within a playlist, and colapsed those features by playlist. These collapsed variables characterize a playlist and represent our predictive features for machine learning. 
+Our problem question is as follows:
 
-Our training and test set were a sample of playlists well distributed among the five classes. We tested models on this dataset, such as logistic regression (one vs. many), decision trees, random forest, LDA, QDA, and AdaBoost. We compared the performance of our models on the training and test sets, perform cross-validations and define hyperparameters. Our decision of our best model, random forest, was defined based on these performance exercises, and took into account computational complexity and the trade-off between performance and interpretability.
+ “Can we predict the class of a playlist, and use the features of its songs, to recommend appropriate new songs to that playlist?”
 
-“Can we predict the class of a playlist, and use the features of its songs, to recommend appropriate new songs to that playlist?”
+Music recommender system have become an important part of the music streaming industry recently, and it contributes to their revenure vastly, by increasing the user engagement and satisfaction from the service. One of the primary products of the Spotify, Pandora and Apple music is playlists, which is the users list of the his/her selected songs based on his/her mood. And this music recommender systems tries to add more relevant songs to the user's current playlist based on the feature of the current songs or the user's profile.
+During this project we don't have access to user's profile data, but we can use other datasets to do the classification of the palylist, in order to suggest most similar new songs to that playlist from the a pool of songs.
+
+
