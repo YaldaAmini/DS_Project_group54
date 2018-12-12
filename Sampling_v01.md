@@ -12,62 +12,20 @@ nav_include: 3
 
 ## Description (summary):
 
-The goal of this section is to create a final dataset of playlists (our sample), with independent variables (tracks and artists features) and the dependent variable (genre of the playlist). Most importantly, we made sure that our sample was equally distributed in each of the classes, since this is important in fitting the models to the training dataset. In order to do so, we had to carry out a number of steps, which included: 
+The goal of this section is to create a final dataset of playlists (our sample), with independent variables (tracks and artists features) and the dependent variable (genre of the playlist). Most importantly, we made sure that our sample was equally distributed in each of the classes, since this is important in fitting the models to the training dataset. In order to do so, we had to carry out a number of steps, which included:
 
     - Requesting playlist IDs, tracks and artist features from Spotify's API using Spotipy Package
     - Setting up a pandas dataframe at the track level
     - Classifying each song to one of 5 genres (rock, pop, poprock, rap, and others)
     - Collapsing the songs to unique playlist IDs, so that for each playlist we would have a vector of average of the features of songs belonging to a playlist, which characterizes each playlist
     - Classifying each playlist to one of 5 genres (rock, pop, poprock, rap, and others), according to the genre most frequent in that given playlist
-    - Setting up final sample of playlists of equally distributed in each of the classes (genres) 
+    - Setting up final sample of playlists of equally distributed in each of the classes (genres)
 
 <hr style="height:2pt">
 
 ## Requesting playlist IDs, tracks and artist features from Spotify's API using Spotipy Package
 
-First we imported the necessarry libraries to be used in our functions and codes:
-
-
-
-```python
-import json # import the json library
-%matplotlib inline
-import numpy as np
-import scipy 
-import matplotlib as mpl
-import matplotlib.cm as cm
-import matplotlib.pyplot as plt
-import pandas as pd
-import time
-import re
-pd.set_option('display.width', 500)
-pd.set_option('display.max_columns', 100)
-pd.set_option('display.notebook_repr_html', True)
-import seaborn as sns
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-import spotipy.util as util
-```
-
-
-Then we read the json files provided from the the Million Playlist Dataset (explained in the Description of Data): 
-
-
-
-```python
-path = "data"
-
-file_names = ["mpd.slice.0-999", "mpd.slice.1000-1999", "mpd.slice.2000-2999", "mpd.slice.3000-3999", "mpd.slice.4000-4999", "mpd.slice.5000-5999", "mpd.slice.6000-6999", "mpd.slice.7000-7999", "mpd.slice.8000-8999", "mpd.slice.9000-9999","mpd.slice.10000-10999", "mpd.slice.11000-11999", "mpd.slice.12000-12999", "mpd.slice.13000-13999", "mpd.slice.14000-14999"]
-plylist = []
-for file in file_names:
-    with open(path+"/"+file+".json", "r") as fd:
-        plylist_temp = json.load(fd)
-        plylist_temp = plylist_temp.get('playlists')
-        plylist = plylist + plylist_temp
-```
-
-
-The following function takes a number of playlist and returns the features of the tracks of those selected playlists: 
+The following function takes a number of playlist and returns the features of the tracks of those selected playlists:
 
 
 
@@ -75,14 +33,14 @@ The following function takes a number of playlist and returns the features of th
 def feature_list_func(plylist_dic, feature, n_playlist, first_pid):
     """"
     This function takes a number of playlist and returns the features of the tracks of those selected playlists.
-    
-    input: 
+
+    input:
         1 - plylist_dic: dictionary of all playlists (dataset in dictionary format: json)
         2 - feature: feature to be selected from each songs in selected playlists
-        3 - n_playlists: number of playlists to be selected 
-    
-    output: list of observations for the feature chosen, for all of the tracks that belong to the selected playlists 
-    
+        3 - n_playlists: number of playlists to be selected
+
+    output: list of observations for the feature chosen, for all of the tracks that belong to the selected playlists
+
     """
     feature_list = []
     pid_list = []
@@ -113,7 +71,7 @@ After getting the URI of the tracks and artists, we requested their features fro
 
 ```python
 def create_spotipy_obj():
-    
+
     """
     Uses dbarjum's client id for DS Project
     """
@@ -124,14 +82,14 @@ def create_spotipy_obj():
 
     username = 'dbarjum'
     scope = 'user-library-read'
-    
+
     token = util.prompt_for_user_token(username,scope,client_id=SPOTIPY_CLIENT_ID,
                            client_secret=SPOTIPY_CLIENT_SECRET,
                            redirect_uri=SPOTIPY_REDIRECT_URI)
-    client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_ID, 
+    client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIPY_CLIENT_ID,
                                                           client_secret=SPOTIPY_CLIENT_SECRET, proxies=None)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    
+
     return sp
 ```
 
@@ -147,42 +105,42 @@ sp = create_spotipy_obj()
 
 ```python
 def get_all_features(track_list = list, artist_list = list, sp=None):
-    
+
     """
     This function takes in a list of tracks and a list of artists, along
     with a spotipy object and generates two lists of features from Spotify's API.
-    
+
     inputs:
         1. track_list: list of all tracks to be included in dataframe
         2. artist_list: list of all artists corresponding to tracks
         3. sp: spotipy object to communicate with Spotify API
-    
+
     returns:
         1. track_features: list of all features for each track in track_list
         2. artist_features: list of all artist features for each artist in artist_list
     """
-    
+
     track_features = []
     artist_features = []
-    
+
     track_iters = int(len(track_list)/50)
     track_remainders = len(track_list)%50
 
     start = 0
     end = start+50
-    
+
     for i in range(track_iters):
         track_features.extend(sp.audio_features(track_list[start:end]))
         artist_features.extend(sp.artists(artist_list[start:end]).get('artists'))
         start += 50
         end = start+50
-    
+
 
     if track_remainders:
         end = start + track_remainders
         track_features.extend(sp.audio_features(track_list[start:end]))
         artist_features.extend(sp.artists(artist_list[start:end]).get('artists'))
-    
+
     return track_features, artist_features
 ```
 
@@ -207,35 +165,35 @@ The following function takes in the lists of track and artist features, and gene
 
 ```python
 def create_song_df(track_features=list, artist_features=list, pid=list):
-    
+
     """
     This function takes in two lists of track and artist features, respectively,
     and generates a dataframe of the features.
-    
+
     inputs:
         1. track_features: list of all tracks including features
         2. artist_features: list of all artists including features
-    
+
     returns:
         1. df: a pandas dataframe of size (N, X) where N corresponds to the number of songs
         in track_features, X is the number of features in the dataframe.
     """
-    
+
     import pandas as pd
-    
+
     selected_song_features = ['uri', 'duration_ms', 'time_signature', 'key',
-                              'tempo', 'energy', 'mode', 'loudness', 'speechiness', 
-                              'danceability', 'acousticness', 'instrumentalness', 
+                              'tempo', 'energy', 'mode', 'loudness', 'speechiness',
+                              'danceability', 'acousticness', 'instrumentalness',
                               'valence', 'liveness']
     selected_artist_features = ['followers', 'uri', 'name', 'popularity', 'genres']
-    
+
     col_names = ['song_uri', 'duration_ms', 'time_signature', 'key',
-                 'tempo', 'energy', 'mode', 'loudness', 'speechiness', 
-                 'danceability', 'acousticness', 'instrumentalness', 
+                 'tempo', 'energy', 'mode', 'loudness', 'speechiness',
+                 'danceability', 'acousticness', 'instrumentalness',
                  'valence', 'liveness', 'artist_followers', 'artist_uri',
                  'artist_name', 'artist_popularity']
-    
-    
+
+
     data = []
 
     for i, j in zip(track_features, artist_features):
@@ -252,16 +210,16 @@ def create_song_df(track_features=list, artist_features=list, pid=list):
                 temp.append(j.get(af))
 
         data.append(list(temp))
-    
+
     df = pd.DataFrame(data)
 
     for i in range(len(df.columns)- len(col_names)):
         col_names.append('g'+str(i+1))
-    
+
     df.columns = col_names
-    
+
     df.insert(loc=0, column='pid', value=pid)
-    
+
     return df
 ```
 
@@ -561,7 +519,7 @@ songs_df.head()
 
 ## Collapsing songs to unique playlists
 
-This section is responsible for collapsing songs to unique playlist IDs, so that for each playlist we would have a vector of average of the features of songs belonging to a playlist, which characterizes each playlist. In this section we also classified songs, and playlists. 
+This section is responsible for collapsing songs to unique playlist IDs, so that for each playlist we would have a vector of average of the features of songs belonging to a playlist, which characterizes each playlist. In this section we also classified songs, and playlists.
 
 The following function classifies songs according to the given genres of the artist of the song, according to "if" statements:
 
@@ -569,36 +527,36 @@ The following function classifies songs according to the given genres of the art
 
 ```python
 def genre_generator(songs_df):
-    
+
     """
     This function classifies songs according to the given genres of the artist of the song, according to an "if" statements.
-    
+
     Input: dataframe with a list of songs
-    
-    Output: dataframe with added column with unique genre for each song 
-    
+
+    Output: dataframe with added column with unique genre for each song
+
     """
     # defining liist of genres that will determine a song with unique genre "rap"
     rap = ["rap","hiphop", "r&d"]
 
     # finding position of "g1" (first column of genres) and last position of "gX" in columns (last column of genres) , to use it later for assessingn genre of song
-    g1_index = 0 
+    g1_index = 0
     last_column_index = 0
-    
+
     column_names = songs_df.columns.values
-    
-    # finding first column with genres ("g1") 
+
+    # finding first column with genres ("g1")
     for i in column_names:
         if i == "g1":
             break
         g1_index += 1
-    
+
     # finding last column with genrer ("gX")
     for i in column_names:
         last_column_index += 1
 
-    # create new columnn that will have unique genre (class) of each song 
-    songs_df["genre"] = "" 
+    # create new columnn that will have unique genre (class) of each song
+    songs_df["genre"] = ""
 
     # loop to create genre for each song in dataframe     
     for j in range(len(songs_df)):
@@ -624,7 +582,7 @@ def genre_generator(songs_df):
 
         # giving column genre the classified genre for a given song         
         songs_df.set_value(j, 'genre', genre)
-    
+
     return songs_df
 ```
 
@@ -933,7 +891,7 @@ songs_df_new.head()
 
 
 
-The following lines clean the dataframe by dropping unnecessary columns (the genres of each song), which were used to create the unique column of song genre that will be used later in the algorithm. 
+The following lines clean the dataframe by dropping unnecessary columns (the genres of each song), which were used to create the unique column of song genre that will be used later in the algorithm.
 
 
 
@@ -1149,7 +1107,7 @@ col_names = temp.columns
 ```
 
 
-The code below one-hot-encodes the variable genre, so that we can calculated the proportion of songs of each genre in each playlist. This will help classify the genre of our playlist according to the most frequent genre of songs that belong to that playlist. 
+The code below one-hot-encodes the variable genre, so that we can calculated the proportion of songs of each genre in each playlist. This will help classify the genre of our playlist according to the most frequent genre of songs that belong to that playlist.
 
 
 
@@ -1348,20 +1306,20 @@ The following function takes a data frame of songs (with playlists IDs) and coll
 
 ```python
 def collapse_pid(df):
-    
+
     """
     This function takes a data frame of songs (with playlists IDs) and collapses the dataframe at the playlist ID level, to get averages for each column.
-    
+
     Input: data frame of songs (with playlists IDs)
-    
+
     Output: data frame of playlists (collapsing songs into playlist IDs, using average)
-    
+
     """
-    
+
     # Group by play list category
     pid_groups = df.groupby('pid')
     # Apply mean function to all columns
-    
+
     return pid_groups.mean()
 
 playlists_collapsed = collapse_pid(songs_encoded)
@@ -1377,28 +1335,28 @@ The following function classifies playlists according to the most frequent genre
 
 ```python
 def playlist_genre_generator (df, first_row):
-    
+
     """
     This function classifies playlists according to the most frequent genre of the songs in the playlist
-    
+
     Input: dataframe with a list of playlists
-    
-    Output: dataframe with added column with unique genre for each playlist 
-    
+
+    Output: dataframe with added column with unique genre for each playlist
+
     """
 
-    # create new columnn that will have unique genre (class) of each playlist 
+    # create new columnn that will have unique genre (class) of each playlist
     df ["playlist_genre"] = ""
 
     for j in range(len(df)):
 
         # finding position of "g1" (first column of genres) and last position of "gX" in columns (last column of genres) , to use it later for assessingn genre of song
-        g1_index = 0 
+        g1_index = 0
         last_column_index = 0
 
         column_names = df.columns.values
 
-        # finding first column with genres ("g1") 
+        # finding first column with genres ("g1")
         for i in column_names:
             if i == "artist_followers":
                 break
@@ -1412,12 +1370,12 @@ def playlist_genre_generator (df, first_row):
 
         # Creating list of genres for a given song  
         genres_row = list(df.iloc[[j]][column_names[g1_index:last_column_index]].dropna(axis=1).values.flatten())
-        
+
         # classifing genre for the playlist
         max_value = max(genres_row)
         max_index = genres_row.index(max_value)
         playlist_genre = column_names[g1_index + max_index]
-        
+
         # giving column genre the classified genre for a given playlist
         df.set_value(j + first_row, 'playlist_genre', playlist_genre)
     return df
@@ -1675,9 +1633,9 @@ total_number
 
 
 
-The code below takes one playlist at a time from the pool of 15,000 playlists (read from the Million Playlist json files at the beginning of this page), checks to which genre it belongs, and adds the playlist (if of underepresented genre) to the baseline sample, until the full sample is equally distributed. 
+The code below takes one playlist at a time from the pool of 15,000 playlists (read from the Million Playlist json files at the beginning of this page), checks to which genre it belongs, and adds the playlist (if of underepresented genre) to the baseline sample, until the full sample is equally distributed.
 
-The playlists taken from the 15,000 playlists are taken in sequence after the playlists that have already been added to the sample, or discarded if the playlist belongs to an already "well represented genre". 
+The playlists taken from the 15,000 playlists are taken in sequence after the playlists that have already been added to the sample, or discarded if the playlist belongs to an already "well represented genre".
 
 
 
@@ -1746,9 +1704,9 @@ while total_number < number_mode_genre*5:
     # print (number_genre_other)
     # print (number_genre_poprock)
     # print (number_genre_rock)
-    
+
 print("--- %s seconds ---" % (time.time() - start_time))
-    
+
 genre_classified_playlists.head()
 ```
 
@@ -1955,11 +1913,10 @@ display(genre_classified_playlists['playlist_genre'].value_counts(normalize=True
     Name: playlist_genre, dtype: float64
 
 
-And export the final dataframe as a csv file, which will be used as the sample data for our machine learning models. This sample will be split into training and test data, the former for training different models and assesing their performance, and the latter for evaluating how well our trained models perform in the test data. 
+And export the final dataframe as a csv file, which will be used as the sample data for our machine learning models. This sample will be split into training and test data, the former for training different models and assesing their performance, and the latter for evaluating how well our trained models perform in the test data.
 
 
 
 ```python
 genre_classified_playlists.to_csv ("playlist_df.csv")
 ```
-
