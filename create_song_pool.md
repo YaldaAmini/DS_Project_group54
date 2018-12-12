@@ -4,17 +4,7 @@ notebook: create_song_pool.ipynb
 nav_include: 3
 ---
 
-## Contents
-{:.no_toc}
-*  
-{: toc}
-
-
-## General Description:
 This Jupyter notebook creates a pool containing unique songs obtained through Spotify's API. It requests data for all unique songs found in a subset of Spotify's 1 Million Playlist Set. The subset consists of 10,000 playlists. The number of unique songs found in this subset and pushed into a pool csv file is approximaetly 170,000. This, we assume, is a sufficiently large enough pool for recommending songs to a playlist. Song features are added to the pool in order to be used as a source of information.
-
-**CS 109 Final Project**<br/>
-**Authors**: Yalda Amini, João Araujo, Danny Barjum
 
 <hr style="height:2pt">
 
@@ -70,7 +60,7 @@ artist_uri = []
 for i in range(N):
     track_id = sps.get_playlist_n(spotify_playlist[i], feature = 'track_uri', n_playlist = i)
     artist_id = sps.get_playlist_n(spotify_playlist[i], feature = 'artist_uri', n_playlist = i)  
-    
+
     track_uri.extend(track_id)
     artist_uri.extend(artist_id)
 ```
@@ -181,11 +171,6 @@ start_time = time.time()
 songs_df_unique = sps.genre_generator(songs_df)
 print("--- %s seconds ---" % (time.time() - start_time))
 ```
-
-
-    /Users/danny_barjum/Documents/Work/HKS/Fall 18/CS 109/project/spotify_api_function_set.py:209: FutureWarning: set_value is deprecated and will be removed in a future release. Please use .at[] or .iat[] accessors instead
-      songs_df.set_value(j, 'genre', genre)
-
 
     --- 265.5861220359802 seconds ---
 
@@ -385,4 +370,3 @@ Finally we store the pool into the specified path, we drop the index as it isn't
 ```python
 pool_df.to_csv(path+'/'+'big_song_pool.csv', index=False)
 ```
-
