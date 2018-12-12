@@ -9,16 +9,6 @@ This Jupyter notebook creates a pool containing unique songs obtained through Sp
 <hr style="height:2pt">
 
 
-
-```python
-import pandas as pd
-import time
-import json
-import numpy as np
-import re
-```
-
-
 We import a set of functions we created in order to make notebook codes easier to read. These functions, stored in a .py file called "spotify_api_fuction_set", are used for handling a Library that communicates with the Spotify API called Spotipy. The Spotipy library can be found here (https://spotipy.readthedocs.io/en/latest/). Note that the functions created are specific to this project (See EDA section for list of functions inside this .py file).
 
 
