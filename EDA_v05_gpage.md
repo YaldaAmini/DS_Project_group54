@@ -1575,4 +1575,4 @@ fig.savefig('feature_violin.png')
 
 
 
-![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png =250x50)
+![png](EDA_v05_gpage_files/EDA_v05_gpage_44_0.png | width=250)
