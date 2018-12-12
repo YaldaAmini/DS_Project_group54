@@ -14,27 +14,12 @@ nav_include: 6
 
 ## Summary
 
-Music Recommender Systems (MRS), such as Spotify, aim at finding appropriate songs to recommend to users. Doing so successfully may increase user engagement by facilitating the creation of playlists by users, and by extending listening beyond the end of the existing playlists. Our goal in this exercise was to create a machine learning algorithm that would best suggest songs to an existing playlist, to the extent allowed by the timeline of this project and resources provided. 
+Music Recommender Systems (MRS), such as Spotify, aim at finding appropriate songs to recommend to users. Doing so successfully may increase user engagement by facilitating the creation of playlists by users, and by extending listening beyond the end of the existing playlists. Our goal in this exercise was to create a machine learning algorithm that would best suggest songs to an existing playlist, to the extent allowed by the timeline of this project and resources provided.
 
 We chose a Random Forest model for predicting the genre of a given playlist, with accuracy on the test set of 70.5%. We also tried multiple other models, such as a simple logistic regression, a polynomial logistic regression, Linear Discriminant Analysis (LDA), Quadratic Discriminant Analysis (QDA) and Boosting, but none of these performed better than the selected Random Forest model. Once the genre of a given playlist was predicted, we recommended songs that belonged to that genre, and that would most closely resemble the features of the songs of the given playlist. Our final model used cosine similarity between the vector of features of the songs in the given playlist, and the vector of features of subset of songs of the same genre in the pool of songs to be recommended.
 
-The input used was the Million Playlist Dataset, which we complemented with our secondary source of data taken from Spotify’s Web API. The final output of the model is the recommendation of a set of N songs (from a pool of 130,000 unique songs that we created) to be added to a given playlist. Given the unsupervised nature of this problem (the songs or playlists did not have a pre-defined class), we explored different ways to generate classifications to support our machine learning algorithm. Based on our Exploratory Data Analysis (EDA) and literature review, we decided to classify each song into five different genres (rock, poprock, pop, rap and others), and we used that to classify each playlist, according to the most frequent genre of songs in the playlist. Given the importance of having a similar distribution of playlists among the five classes for fitting the machine learning models, we manually created a sample dataset. More details about this process can be found in the “creating final dataset” section of this website. 
+The input used was the Million Playlist Dataset, which we complemented with our secondary source of data taken from Spotify’s Web API. The final output of the model is the recommendation of a set of N songs (from a pool of 130,000 unique songs that we created) to be added to a given playlist. Given the unsupervised nature of this problem (the songs or playlists did not have a pre-defined class), we explored different ways to generate classifications to support our machine learning algorithm. Based on our Exploratory Data Analysis (EDA) and literature review, we decided to classify each song into five different genres (rock, poprock, pop, rap and others), and we used that to classify each playlist, according to the most frequent genre of songs in the playlist. Given the importance of having a similar distribution of playlists among the five classes for fitting the machine learning models, we manually created a sample dataset. More details about this process can be found in the “creating final dataset” section of this website.
 The picture below depics the whole process of our project.
-
-
-
-```python
-from IPython.display import Image
-```
-
-
-
-
-```python
-Image("img/Flowchart.png",width=1000, height=600)
-```
-
-
 
 
 
@@ -42,7 +27,7 @@ Image("img/Flowchart.png",width=1000, height=600)
 
 
 
-## Results 
+## Results
 
 We used different modeling methods for the 5-genres classification problem, using the variables from EDA part.
 
@@ -59,11 +44,6 @@ The performance of the random forest on training set is1, while on the test set 
 
 
 
-```python
-Image("img/trees_perf.png",width=1000, height=600)
-```
-
-
 
 
 
@@ -72,12 +52,6 @@ Image("img/trees_perf.png",width=1000, height=600)
 
 
 Below you can find the boxplot of the cross validation scores of the different models on the test set.
-
-
-
-```python
-Image("img/boxplot.png",width=600, height=600)
-```
 
 
 
@@ -122,12 +96,6 @@ The training score of 0.97 vs the test score of 0.60 is the sign of overfitting 
 
 
 
-```python
-Image("img/adaboost.png",width=700, height=400)
-```
-
-
-
 
 
 ![png](summary_files/summary_11_0.png)
@@ -152,11 +120,6 @@ The predicted genre of this example's playlist based on our model is **Pop Rock*
 
 
 
-```python
-Image("img/original_playlist_1.png",width=700, height=400)
-```
-
-
 
 
 
@@ -170,11 +133,6 @@ Now, here's the simple recommender model's set of songs suggested to be added to
 
 
 
-```python
-Image("img/simple_result_1.png",width=700, height=400)
-```
-
-
 
 
 
@@ -185,14 +143,6 @@ Image("img/simple_result_1.png",width=700, height=400)
 As you can see, some songs are of type rock (ex. "Bloc Party", ), alternative rock ("Alanis Morissette", "Michael Seyer", "Vertical Horizon", "Cold War Kids", "Counting Crows"), some pop ("Washed Out", "Hellogoodbye")  and oddly a christmas song by "The Suprmes" although they are known as being an R&B/Pop group. Although these are mostly rock and pop songs, these songs don't "feel" like they belong in this playlist.
 
 So, let's see how the advanced model which uses cosine similarity does. Here's the set of recommended songs:
-
-
-
-```python
-Image("img/cosine_result_1.png",width=700, height=400)
-```
-
-
 
 
 
@@ -212,12 +162,6 @@ This is a sample of the actual playlist from the 1 Million Spotify Playlist data
 
 
 
-```python
-display(Image("img/Screen Shot 2018-12-12 at 12.26.53 PM.png",width=700, height=400))
-display(Image("img/Screen Shot 2018-12-12 at 12.27.26 PM.png",width=700, height=400))
-```
-
-
 
 ![png](summary_files/summary_20_0.png)
 
@@ -229,12 +173,6 @@ display(Image("img/Screen Shot 2018-12-12 at 12.27.26 PM.png",width=700, height=
 As you can see, most songs seem to be from Korea, from quick online searches, most songs seem to be of the genre hip hop, R&B and pop. Now, since our model mis-classified this playlist as pop, our recommendation models will not return songs from the playlists genre. Let's take a look.
 
 Here's the simple model's set of recommended songs to be added to the playlist:
-
-
-
-```python
-Image("img/simple_result_2.png",width=700, height=400)
-```
 
 
 
@@ -250,19 +188,13 @@ Here's the advanced model's (cosine similarity) set of recommended songs to be a
 
 
 
-```python
-Image("img/cosine_result_2.png",width=700, height=400)
-```
-
-
-
 
 
 ![png](summary_files/summary_24_0.png)
 
 
 
-ok, it's also not good, no Korean songs, but it recommends music from P!ink, Gorillaz, Lady Gaga, Britney Spears. This might be because these songs might sound somewhat similar to the songs in the playlist, so this model might still perform better than the simple model. 
+ok, it's also not good, no Korean songs, but it recommends music from P!ink, Gorillaz, Lady Gaga, Britney Spears. This might be because these songs might sound somewhat similar to the songs in the playlist, so this model might still perform better than the simple model.
 
 There's a few important things to notice here:
 1. Even if we use cosine similarity, we might not recommend good songs if we mis-classify the genre. So classifying genre correctly is key. Also, we might want to consider classifying more genre's other than the five we used.
@@ -272,13 +204,13 @@ There's a few important things to notice here:
 
 ## Conclusion and Future Work
 
-Our work resulted in a model that, based on the prediction of the gender of a given playlist, recommends songs that closely match the features of the songs contained in that given playlist. While we understand the limitations of our work and its contribution, we are thankful for how much we have learned and the accomplishments achieved throughout the project, particularly by tackling some challenges that we did not face during the course, making this project complimentary to the rest of the class. 
+Our work resulted in a model that, based on the prediction of the gender of a given playlist, recommends songs that closely match the features of the songs contained in that given playlist. While we understand the limitations of our work and its contribution, we are thankful for how much we have learned and the accomplishments achieved throughout the project, particularly by tackling some challenges that we did not face during the course, making this project complimentary to the rest of the class.
 
-A few instances of these challenges included collecting data by using Spotify’s Web API, working with an unsupervised learning case, building a website, and finding a methodology to recommend songs appropriately to a given playlist. The support from the Data Science teaching team, together with our literature review, was paramount in helping us deal with these challenges. In testing our work, we achieved XX% accuracy on the prediction of our model, and by listening to a sample of songs recommended to a given playlists, we saw (subjectively) that our model satisfactorily recommends songs aligned with the characteristics of a given playlist. 
-    
-We also recognize that there are ample areas in which our work could be improved, including, but not limited to: 
+A few instances of these challenges included collecting data by using Spotify’s Web API, working with an unsupervised learning case, building a website, and finding a methodology to recommend songs appropriately to a given playlist. The support from the Data Science teaching team, together with our literature review, was paramount in helping us deal with these challenges. In testing our work, we achieved XX% accuracy on the prediction of our model, and by listening to a sample of songs recommended to a given playlists, we saw (subjectively) that our model satisfactorily recommends songs aligned with the characteristics of a given playlist.
 
-    • Classification 
+We also recognize that there are ample areas in which our work could be improved, including, but not limited to:
+
+    • Classification
         o Further breaking down the classification of genres
         o Including other aspects (beyond pure gender) in the classification of the songs, such as whether the song is instrumental
     • Features
@@ -286,7 +218,7 @@ We also recognize that there are ample areas in which our work could be improved
         o Include features that describe the users (eg: age, language, location)
         o Further explore variable selection methods (Lasso, Ridge, forward and backward selection)
         o Use lyric features as predictors
-    • Model improvement 
+    • Model improvement
         o Test other machine learning models (eg: Neural Networks, Support Vector Machine)
         o Further tune the hyperparameters of the models we have used (eg: tree depths and number of trees in AdaBoosting)
     • Data Set (our sample)
@@ -295,5 +227,3 @@ We also recognize that there are ample areas in which our work could be improved
     • Song Suggestion
         o Adjust our cosine similarity model to suggest songs in the proportion of the genres of songs in the given playlist (as opposed to suggesting all songs of the same genre as the predicted genre of the playlist)
         o Explore other methods for recommending songs
-
-
