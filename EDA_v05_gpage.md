@@ -1316,12 +1316,11 @@ It appears that the most commonly occurring genre is rap, followed by pop.
 
 We then looked at how each feature is distributed when grouped by genre (See appendix 1 at the end of the current page). A few findings of interest were danceability, energy and artist popularity (shown below). These seem like variables that we could use to discriminate between the genres.
 
-![png](img/hist.png)
-<img src="img/hist.png" alt="drawing" align="middle"/>
+![png](notebooks/img/hist.png)
 
-<img src="img/hist2.png" alt="drawing" align="middle"/>
+![png](notebooks/img/hist2.png)
 
-<img src="img/hist3.png" alt="drawing" align="middle"/>
+![png](notebooks/img/hist3.png)
 
 
 ```python
@@ -1572,4 +1571,4 @@ fig.savefig('feature_violin.png')
 
 ** Appendix 1**
 
-![png](img/feature_hist.png)
+![png](notebooks/img/feature_hist.png)
