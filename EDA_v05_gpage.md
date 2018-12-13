@@ -1236,7 +1236,7 @@ plt.show()
 
 ### Noteworthy findings
 
-After creating a scatter matrix of the variables, we decided to look at the distribution of the variables over 1000 songs. Appendix 2 contains distribution plots for each of the song features. This step was not very informative, but of some interest was the following few distributions:
+After creating a scatter matrix of the variables, we decided to look at the distribution of the variables over 1000 songs. This step was not very informative, but of some interest was the following few distributions:
 
 Artist followers – most artists have few followers, but there are a few artists that have a large number of followers.
 
@@ -1528,7 +1528,7 @@ songs_encoded .head()
 
 
 
-The Final step of our EDA consisted into looking at boxplots of each feature grouped by genre. The purpose of this was to also see if some variables stand out as being useful for prediction. The results of this analysis are shown in appendix 3. From this analysis we discovered that a few informative variables are Speechness, Danceability, Log of instrumentalness, Artist followers, and Artist popularity:
+The Final step of our EDA consisted into looking at boxplots of each feature grouped by genre. The purpose of this was to also see if some variables stand out as being useful for prediction. From this analysis we discovered that a few informative variables are Speechness, Danceability, Log of instrumentalness, Artist followers, and Artist popularity:
 
 
 
@@ -1573,4 +1573,3 @@ fig.savefig('feature_violin.png')
 ** Appendix 1**
 <img src="img/feature_hist.png" alt="drawing" align="middle"/>
 
-** Appendix 2 **
