@@ -210,20 +210,20 @@ A few instances of these challenges included collecting data by using Spotify’
 
 We also recognize that there are ample areas in which our work could be improved, including, but not limited to:
 
-    - Classification
-        - Further breaking down the classification of genres
-        - Including other aspects (beyond pure gender) in the classification of the songs, such as whether the song is instrumental
-    - Features
-        - Increase the number of features used
-        - Include features that describe the users (eg: age, language, location)
-        - Further explore variable selection methods (Lasso, Ridge, forward and backward selection)
-        - Use lyric features as predictors
-    - Model improvement
-        - Test other machine learning models (eg: Neural Networks, Support Vector Machine)
-        - Further tune the hyperparameters of the models we have used (eg: tree depths and number of trees in AdaBoosting)
-    - Data Set (our sample)
-        - Use larger datasets for the sources we used (eg: more playlists in the train/test sets, or for the pool of songs to be recommended)
-        - Include other sources of data to compliment what we have used (eg: Million Song Dataset, Lyrics Wiki)
-    - Song Suggestion
-        - Adjust our cosine similarity model to suggest songs in the proportion of the genres of songs in the given playlist (as opposed to suggesting all songs of the same genre as the predicted genre of the playlist)
-        - Explore other methods for recommending songs
+- Classification
+  - Further breaking down the classification of genres
+  - Including other aspects (beyond pure gender) in the classification of the songs, such as whether the song is instrumental
+- Features
+  - Increase the number of features used
+  - Include features that describe the users (eg: age, language, location)
+  - Further explore variable selection methods (Lasso, Ridge, forward and backward selection)
+  - Use lyric features as predictors
+- Model improvement
+  - Test other machine learning models (eg: Neural Networks, Support Vector Machine)
+  - Further tune the hyperparameters of the models we have used (eg: tree depths and number of trees in AdaBoosting)
+- Data Set (our sample)
+  - Use larger datasets for the sources we used (eg: more playlists in the train/test sets, or for the pool of songs to be recommended)
+  - Include other sources of data to compliment what we have used (eg: Million Song Dataset, Lyrics Wiki)
+- Song Suggestion
+  - Adjust our cosine similarity model to suggest songs in the proportion of the genres of songs in the given playlist (as opposed to suggesting all songs of the same genre as the predicted genre of the playlist)
+  - Explore other methods for recommending songs
