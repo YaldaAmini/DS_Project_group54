@@ -1568,6 +1568,7 @@ fig.savefig('feature_violin.png')
 
 <img src="EDA_v05_gpage_files/EDA_v05_gpage_44_0.png" alt="drawing" width="600" align="middle"/>
 
+<hr style="height:2pt">
 
 **Appendix 1**
 
