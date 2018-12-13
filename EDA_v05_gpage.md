@@ -1569,6 +1569,6 @@ fig.savefig('feature_violin.png')
 <img src="EDA_v05_gpage_files/EDA_v05_gpage_44_0.png" alt="drawing" width="600" align="middle"/>
 
 
-** Appendix 1**
+**Appendix 1**
 
 ![png](notebooks/img/feature_hist.png)
