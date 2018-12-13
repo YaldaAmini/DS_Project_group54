@@ -1571,5 +1571,5 @@ fig.savefig('feature_violin.png')
 
 
 ** Appendix 1**
-<img src="img/feature_hist.png" alt="drawing" align="middle"/>
+
 ![png](img/feature_hist.png)
